@@ -8,8 +8,9 @@ loginButton.addEventListener("click", (e) => {
     const Kodeord = loginForm.Kodeord.value;
 
     if (CPR === "user" && Kodeord === "1") {
-        alert("You have successfully logged in.");
-        location.replace();
+        location.replace('Sundhedsportal-Login.html');
+      //  alert("You have successfully logged in.");
+
 
     } else {
         loginErrorMsg.style.opacity = 1;

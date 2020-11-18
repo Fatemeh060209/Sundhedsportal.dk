@@ -1,3 +1,5 @@
+package Java;
+
 import java.util.*;
 
 public class CGIget {
@@ -24,17 +26,17 @@ public class CGIget {
         System.out.println("Transferred fields:");
         System.out.println("<TABLE BORDER=\"1\">");
         String felt;
-        while ( t.hasMoreTokens() ) {
+        while (t.hasMoreTokens()) {
             felt = t.nextToken();
             if (felt != null) {
                 System.out.print("<TR><TD>");
-                StringTokenizer tt = new StringTokenizer(felt,"=\n\r");
+                StringTokenizer tt = new StringTokenizer(felt, "=\n\r");
                 String s = tt.nextToken();
-                if ( s != null ) {
+                if (s != null) {
                     System.out.print(s);
                     s = tt.nextToken();
-                    if ( s != null )
-                        System.out.print("</TD><TD>"+s);
+                    if (s != null)
+                        System.out.print("</TD><TD>" + s);
                 }
             }
             System.out.println("</TD></TR>");
@@ -45,7 +47,7 @@ public class CGIget {
     public static void main(String[] args) {
         showHead();
         if (args.length > 0 && args[0] != null && args[0].length() > 0) {
-            showBody(new StringTokenizer(args[0],"&\n\r"));
+            showBody(new StringTokenizer(args[0], "&\n\r"));
         } else
             System.out.println("<P>No data!</P>");
         showTail();

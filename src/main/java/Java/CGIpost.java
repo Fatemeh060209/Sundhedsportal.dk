@@ -1,3 +1,5 @@
+package Java;
+
 import java.util.*;
 import java.io.*;
 
@@ -25,17 +27,17 @@ public class CGIpost {
         System.out.println("Transferred fields:");
         System.out.println("<TABLE BORDER=\"1\">");
         String felt;
-        while ( t.hasMoreTokens() ) {
+        while (t.hasMoreTokens()) {
             felt = t.nextToken();
             if (felt != null) {
                 System.out.print("<TR><TD>");
-                StringTokenizer tt = new StringTokenizer(felt,"=\n\r");
+                StringTokenizer tt = new StringTokenizer(felt, "=\n\r");
                 String s = tt.nextToken();
-                if ( s != null ) {
+                if (s != null) {
                     System.out.print(s);
                     s = tt.nextToken();
-                    if ( s != null )
-                        System.out.print("</TD><TD>"+s);
+                    if (s != null)
+                        System.out.print("</TD><TD>" + s);
                 }
             }
             System.out.println("</TD></TR>");
@@ -47,10 +49,10 @@ public class CGIpost {
         showHead();
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-            String[] data = { in.readLine() };
-            showBody(new StringTokenizer(data[0],"&\n\r"));
-        } catch(IOException ioe) {
-            System.out.println("<P>IOException reading POST data: "+ioe+"</P>");
+            String[] data = {in.readLine()};
+            showBody(new StringTokenizer(data[0], "&\n\r"));
+        } catch (IOException ioe) {
+            System.out.println("<P>IOException reading POST data: " + ioe + "</P>");
         }
         showTail();
     }

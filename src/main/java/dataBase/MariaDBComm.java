@@ -6,7 +6,7 @@ import java.sql.*;
 public class MariaDBComm {
 
     static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
-    static String url = "jdbc:mariadb://192.168.239.25:3306/login";
+    static String url = "jdbc:mariadb://su5.eduhost.dk:3306/Gruppe7";
     private static Connection conn = null;
     private static Statement statement = null;
     //private PreparedStatement prep = null;
@@ -36,33 +36,53 @@ public class MariaDBComm {
             }
 
             //find out which columns are in current table:
-            statement = conn.createStatement();
-            String sql = "select * from loginoplysninger;";
-            ResultSet rs = statement.executeQuery(sql);
-            ResultSetMetaData rsMetaData = rs.getMetaData();
-            int numberOfColumns = rsMetaData.getColumnCount();
-
-            // get the column names; column indexes start from 1
-            for (int i = 1; i < numberOfColumns + 1; i++) {
-                String columnName = rsMetaData.getColumnName(i);
-                // Get the name of the column's table name
-                String tableName = rsMetaData.getTableName(i);
-                System.out.println("column name=" + columnName);
-                System.out.println("table name" + tableName);
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+            findTableKalender();
+            findTableLogin();
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
+
+    private static void findTableKalender() throws SQLException {
+        statement = conn.createStatement();
+        String sql = "select * from Kalender;";
+        ResultSet rs = statement.executeQuery(sql);
+        ResultSetMetaData rsMetaData = rs.getMetaData();
+        int numberOfColumns = rsMetaData.getColumnCount();
+
+        // get the column names; column indexes start from 1
+        for (int i = 1; i < numberOfColumns + 1; i++) {
+            String columnName = rsMetaData.getColumnName(i);
+            // Get the name of the column's table name
+            String tableName = rsMetaData.getTableName(i);
+            System.out.println(columnName);
+        }
+    }
+
+    private static void findTableLogin() throws SQLException {
+        statement = conn.createStatement();
+        String sql = "select * from Login;";
+        ResultSet rs = statement.executeQuery(sql);
+        ResultSetMetaData rsMetaData = rs.getMetaData();
+        int numberOfColumns = rsMetaData.getColumnCount();
+
+        // get the column names; column indexes start from 1
+        for (int i = 1; i < numberOfColumns + 1; i++) {
+            String columnName = rsMetaData.getColumnName(i);
+            // Get the name of the column's table name
+            String tableName = rsMetaData.getTableName(i);
+            System.out.println(tableName);
+            System.out.println(columnName);
+        }
+    }
+
 
    /* private static String findUser(String Cpr,String Paswword){
         String userCpr = null;
         String sqlFindUser = " select ";
 
     */
-    }
+}
 
 
 

@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="../CSS/Login.css">
-    <script defer src="../Script/Login-check.js"></script>
+    <link rel="stylesheet" type="text/css" href="Login.css">
+    <script defer src="Login-check.js"></script>
 
 </head>
 
 <body>
 <header>
-    <div class="logo"><img src="../Image/logo.png"></div>
+    <div class="logo"><img src="logo.png"></div>
 
     <div id="div-holder">
         <h1 id="login-header">Log in</h1>
@@ -19,7 +19,7 @@
             <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
         </div>
 
-        <form id="login-form" action="/cgi-bin/CGIget">
+        <form id="login-form" action="/cgi-bin/CGIget" method="get">
             <input type="text" name="CPR" id="username-field" class="login-form-field" placeholder="CPR">
             <input type="password" name="Kodeord" id="password-field" class="login-form-field" placeholder="Kodeord">
             <input type="submit" onclick="" value="Log på" id="login-form-submit">

@@ -1,3 +1,5 @@
+package Java;
+
 import java.io.*;
 import java.util.*;
 
@@ -17,13 +19,13 @@ public class Convert {
 
         try {
             in = new BufferedReader(new FileReader(filename));
-            out = new PrintWriter(new FileWriter(filename+".out"));
+            out = new PrintWriter(new FileWriter(filename + ".out"));
             String l = in.readLine();
-            while ( l != null ) {
+            while (l != null) {
                 out.print("System.out.println(\"");
-                for (int i=0; i<l.length(); i++) {
+                for (int i = 0; i < l.length(); i++) {
                     char c = l.charAt(i);
-                    if ( c == '"' ) out.print("\\");
+                    if (c == '"') out.print("\\");
                     out.print(c);
                 }
                 out.println("\");");

@@ -9,9 +9,6 @@ loginButton.addEventListener("click", (e) => {
 
     if (CPR === "user" && Kodeord === "1") {
         location.replace('Sundhedsportal-Login.html');
-      //  alert("You have successfully logged in.");
-
-
     } else {
         loginErrorMsg.style.opacity = 1;
     }

@@ -15,25 +15,7 @@ public class MariaDBComm {
         //Bruges bare til at have en metode som kan k re det hele fra.
         //DBcomm db = new DBcomm();
         try {
-            Class.forName(JDBC_DRIVER);
-            String user, pass;
-            user = "fatemeh";
-            pass = "Hassan123";
-            // url="jdbc:mysql://localhost:3306/phoenixpoint?serverTimezone=Europe/Amsterdam&amp";
-
-            // Skal man fx. bruge 127.0.0.1 til en remote maskine?
-//Connection connection =
-// DriverManager.getConnection("jdbc:mariadb://localhost:3306/DB?user=root&password=myPassword");
-            //T nk jer om - kan man opn  mariadb forbindelse til en anden maskine uden at  ndre denne her?
-
-
-            conn = DriverManager.getConnection(url, user, pass);
-            if (conn != null) {
-
-                System.out.println("Im in");
-            } else {
-                System.out.println("connection not made");
-            }
+            getConnection();
 
             //find out which columns are in current table:
             findTableKalender();
@@ -41,6 +23,29 @@ public class MariaDBComm {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Connection getConnection() throws ClassNotFoundException, SQLException {
+        Class.forName(JDBC_DRIVER);
+        String user, pass;
+        user = "fatemeh";
+        pass = "Hassan123";
+        // url="jdbc:mysql://localhost:3306/phoenixpoint?serverTimezone=Europe/Amsterdam&amp";
+
+        // Skal man fx. bruge 127.0.0.1 til en remote maskine?
+//Connection connection =
+// DriverManager.getConnection("jdbc:mariadb://localhost:3306/DB?user=root&password=myPassword");
+        //T nk jer om - kan man opn  mariadb forbindelse til en anden maskine uden at  ndre denne her?
+
+
+        conn = DriverManager.getConnection(url, user, pass);
+        if (conn != null) {
+
+            System.out.println("Im in");
+        } else {
+            System.out.println("connection not made");
+        }
+        return conn;
     }
 
     private static void findTableKalender() throws SQLException {

@@ -13,7 +13,7 @@ public class DBUploadPersonData {
     private static String mail;
     private static Connection connection;
     public static void main(String[] args) {
-        try {
+       /* try {
            connection = MariaDBComm.getConnection();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -21,6 +21,8 @@ public class DBUploadPersonData {
             e.printStackTrace();
         }
 
+
+        */
         // System.out.println("Im Gone");
         //getHomeData();
         {

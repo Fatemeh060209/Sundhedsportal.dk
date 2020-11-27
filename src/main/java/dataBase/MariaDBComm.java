@@ -14,22 +14,34 @@ public class MariaDBComm {
     public static void main(String[] args) {
         //Bruges bare til at have en metode som kan k re det hele fra.
         //DBcomm db = new DBcomm();
-        try {
-            getConnection();
+       /*  try {
+           getConnection();
 
             //find out which columns are in current table:
             findTableKalender();
             findTableLogin();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        }
+       }*/
     }
 
-    public static Connection getConnection() throws ClassNotFoundException, SQLException {
-        Class.forName(JDBC_DRIVER);
-        String user, pass;
-        user = "fatemeh";
-        pass = "Hassan123";
+    public  Connection getConnection()  {
+        try {
+            Class.forName(JDBC_DRIVER);
+            String user, pass;
+            user = "fatemeh";
+            pass = "Hassan123";
+            conn = DriverManager.getConnection(url, user, pass);
+            if (conn != null) {
+
+                System.out.println("Im in");
+            } else {
+                System.out.println("connection not made");
+            }
+        } catch (SQLException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
         // url="jdbc:mysql://localhost:3306/phoenixpoint?serverTimezone=Europe/Amsterdam&amp";
 
         // Skal man fx. bruge 127.0.0.1 til en remote maskine?
@@ -38,13 +50,7 @@ public class MariaDBComm {
         //T nk jer om - kan man opn  mariadb forbindelse til en anden maskine uden at  ndre denne her?
 
 
-        conn = DriverManager.getConnection(url, user, pass);
-        if (conn != null) {
 
-            System.out.println("Im in");
-        } else {
-            System.out.println("connection not made");
-        }
         return conn;
     }
 

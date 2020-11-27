@@ -9,9 +9,10 @@ import java.util.StringTokenizer;
 
 public class CGIDBValidate {
     static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
-    static String url2 = "jdbc:mariadb://192.168.239.25:3306/loginoplysninger";
-    static String url = "jdbc:mariadb://[2001:878:200:4102:207:e9ff:fe62:c2d]:3306/Loginoplysninger";
-    String addresse = "jdbc:mariadb://[ip6]:3306/schemanavn";
+   // static String url = "jdbc:mariadb://192.168.239.25:3306/Gruppe7";
+    static String url = "jdbc:mariadb://[2001:878:200:4102:207:e9ff:fe62:c2d]:3306/Gruppe7";
+    static String username = "fatemeh";
+    static String kodeord = "Hassan123";
     private static Connection conn = null;
     private static Statement statement = null;
     private PreparedStatement prep = null;
@@ -46,18 +47,11 @@ public class CGIDBValidate {
             Class.forName("org.mariadb.jdbc.Driver");
 
             //mysql skal  ndres senere til MariaDB, localhost til en IPaddresse -
-            String user, pass;
-            user = "william";
-            pass = "budgieboi";
-            // url="jdbc:mysql://localhost:3306/phoenixpoint?serverTimezone=Europe/Amsterdam&amp";
+            String Cpr, pass;
+            Cpr = "1212121212";
+            pass = "hejhej";
 
-            // Skal man fx. bruge 127.0.0.1 til en remote maskine?
-//Connection connection =
-// DriverManager.getConnection("jdbc:mariadb://localhost:3306/DB?user=root&password=myPassword");
-            //T nk jer om - kan man opn  mariadb forbindelse til en anden maskine uden at  ndre denne her?
-
-
-            conn = DriverManager.getConnection(url, user, pass);
+            conn = DriverManager.getConnection(url,username,kodeord);
             if (conn != null) {
 
                 System.out.println("Im in");
@@ -67,7 +61,7 @@ public class CGIDBValidate {
 
             //find out which columns are in current table:
             statement = conn.createStatement();
-            String sql = "select * from loginoplysninger;";
+            String sql = "select * from Gruppe7.Login;";
             ResultSet rs = statement.executeQuery(sql);
             ResultSetMetaData rsMetaData = rs.getMetaData();
             int numberOfColumns = rsMetaData.getColumnCount();
@@ -81,7 +75,7 @@ public class CGIDBValidate {
             }
 
             //
-            String finduser = findUser("wilge@dtu.dk","henning");
+            String finduser = findUser("2506913535", "goddavs");
 
 
 //            showHead();
@@ -121,19 +115,19 @@ public class CGIDBValidate {
         System.out.println("</BODY>\n</HTML>");
     }
 
-    private static String findUser(String mail,String Password){
+    private static String findUser(String cpr,String pass){
         String userCPR =null;
 
-        String sqlFindUser = "select idloginoplysninger,cpr,mail from loginoplysninger where password ='" +Password+ "'and mail ='"+ mail +"';";
+        String sqlFindUser = "select cpr,pass from Login where cpr ='" +cpr+ "'and pass ='"+ pass +"';";
         try {
             ResultSet rs = statement.executeQuery(sqlFindUser);
             rs.next();
-            int id = rs.getInt(1);
-            String cpr = rs.getString(2);
-            String email = rs.getString(3);
-            System.out.println("Id:"+id);
+             cpr = rs.getString("cpr");
+            pass = rs.getString("pass");
+           // String email = rs.getString(3);
             System.out.println("cpr:"+cpr);
-            System.out.println("mail:"+email);
+            System.out.println("pass:"+pass);
+            //System.out.println("mail:"+email);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

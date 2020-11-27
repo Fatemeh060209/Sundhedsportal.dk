@@ -21,7 +21,7 @@ public class CGIget {
     private static void showTail() {
         System.out.println("</BODY>\n</HTML>");
     }
-
+    
     private static void showBody(StringTokenizer t) {
         System.out.println("Transferred fields:");
         System.out.println("<TABLE BORDER=\"1\">");

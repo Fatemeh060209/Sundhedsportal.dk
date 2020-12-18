@@ -1,7 +1,9 @@
 package Java;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 public class Convert {
 
@@ -10,15 +12,16 @@ public class Convert {
 // opretter en .out fil indeholdende java kodestump
 
     private static BufferedReader in = null;
-    private static String filename = null;
+    private static String filename = "HTML";
     private static PrintWriter out = null;
 
     public static void main(String[] args) {
-        if (args.length > 0) filename = args[0];
+      /*  if (args.length > 0) filename = args[0];
         else System.exit(0);
-
+       */
         try {
-            in = new BufferedReader(new FileReader(filename));
+            in = new BufferedReader(new FileReader("/Users/fatemeh/IdeaProjects/Sundhedsportal.dk/" +
+                    "src/main/java/HTML/Kalender.html"));
             out = new PrintWriter(new FileWriter(filename + ".out"));
             String l = in.readLine();
             while (l != null) {

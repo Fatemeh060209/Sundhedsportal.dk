@@ -1,21 +1,23 @@
-package Java;
+package XML;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
-    @XmlRootElement(name = "boger")
+    @XmlRootElement(name = "borger")
     @XmlType(propOrder = {
             "cpr",
             "forNavn",
             "efterNavn",
+            "email"
     })
-    public class html{
+    public class PatientData{
 
         private String cpr;
         private String forNavn;
         private String efterNavn;
-        @XmlElement(name = "borgerInfo")
+        private String email;
+        @XmlElement(name = "Cpr")
 
         public String getCpr() {
             return cpr;
@@ -41,7 +43,13 @@ import javax.xml.bind.annotation.XmlType;
             this.efterNavn = efterNavn;
         }
 
+        public String getEmail() {
+            return email;
+        }
 
+        public void setEmail(String email) {
+            this.email = email;
+        }
     }
 
 
